@@ -10,6 +10,7 @@ public class LevelUI : MonoBehaviour
     void Start ()
     {
         Cursor.visible = false;
+        pauseMenu.SetActive(false);
     }
 
 	void Update ()
