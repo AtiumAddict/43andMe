@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: d09c77e1655ab064ca55f60a9b6011de
+timeCreated: 1516561188
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Nanosecond Wide BRK
+  fontNames:
+  - Nanosecond Wide BRK
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

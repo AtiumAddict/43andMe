@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1397993214886420}
+  m_IsPrefabAsset: 1
+--- !u!1 &1397993214886420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4575921396966142}
+  - component: {fileID: 114612340870432590}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4575921396966142
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1397993214886420}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114612340870432590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1397993214886420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a87d699acf1364ca87d2bcd6796b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: connection
+    clip: {fileID: 8300000, guid: e6c4db3a581e165479d56cf8613ef497, type: 3}
+    volume: 0.605
+    pitch: 0.5
+    randomVolume: 0.197
+    randomPitch: 0.258
+    looping: 0
+  - name: music
+    clip: {fileID: 8300000, guid: a2b45d6dc9fc7874080f877bae9e2aae, type: 3}
+    volume: 0.587
+    pitch: 0.957
+    randomVolume: 0
+    randomPitch: 0
+    looping: 1
+  - name: colorMatch
+    clip: {fileID: 8300000, guid: 1c6145c797b73ed46b8b62d5030d6507, type: 3}
+    volume: 1
+    pitch: 1
+    randomVolume: 0.285
+    randomPitch: 0.318
+    looping: 0
+  - name: explosion
+    clip: {fileID: 8300000, guid: be0d7da5fe205604b8e4345e89f2edd9, type: 3}
+    volume: 0.682
+    pitch: 1
+    randomVolume: 0.265
+    randomPitch: 0.24
+    looping: 0
