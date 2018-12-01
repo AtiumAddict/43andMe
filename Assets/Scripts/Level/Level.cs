@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Level : MonoBehaviour
 {
+    public GameObject winMenu;
+    public GameObject gameOverMenu;
+    public bool playing;
     public Text player, minus0, minus1, minus2, plus0, plus1, plus2;
     private Text[] allBoxes;
     private Text[] minusBoxes;
@@ -17,8 +20,12 @@ public class Level : MonoBehaviour
     public int[,] matrix = new int [1000,3];
     private int currentRow;
 
+    // Counters
+    public GameObject counter01, counter11, counter12, counter21, counter22, counter23;
+
     void Start ()
     {
+        playing = true;
         allBoxes = new Text[] { player, minus0, minus1, minus2, plus0, plus1, plus2 };
         minusBoxes = new Text[] { minus0, minus1, minus2 };
         plusBoxes = new Text[] { plus0, plus1, plus2 };
@@ -46,38 +53,74 @@ public class Level : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
+        if (playing)
         {
-            if (playerPos == 2)
+            if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
             {
-                HorizontalMovement(0);
+                if (playerPos == 2)
+                {
+                    HorizontalMovement(0);
+                }
+                else
+                {
+                    HorizontalMovement(playerPos + 1);
+                }
             }
-            else
-            {
-                HorizontalMovement(playerPos + 1);
-            }
-        }
 
-        if (Input.GetKeyDown("left") || Input.GetKeyDown("a"))
-        {
-            if (playerPos == 0)
+            if (Input.GetKeyDown("left") || Input.GetKeyDown("a"))
             {
-                HorizontalMovement(2);
+                if (playerPos == 0)
+                {
+                    HorizontalMovement(2);
+                }
+                else
+                {
+                    HorizontalMovement(playerPos - 1);
+                }
             }
-            else
+
+            if (Input.GetKeyDown("up") || Input.GetKeyDown("w"))
             {
-                HorizontalMovement(playerPos - 1);
+                ForwardMovement();
             }
-        }
 
-        if (Input.GetKeyDown("up") || Input.GetKeyDown("w"))
-        {
-            ForwardMovement();
-        }
+            if (Input.GetKeyDown("down") || Input.GetKeyDown("s"))
+            {
+                BackwardMovement();
+            }
 
-        if (Input.GetKeyDown("down") || Input.GetKeyDown("w"))
-        {
-            BackwardMovement();
+            if (counter1 == 0 && !counter11.activeSelf)
+            {
+                counter11.SetActive(true);
+            }
+
+            else if (counter1 == 1 && counter11.activeSelf)
+            {
+                counter11.SetActive(false);
+            }
+
+            if (counter2 == 1 && !counter21.activeSelf)
+            {
+                counter21.SetActive(true);
+                if (counter22.activeSelf)
+                {
+                    counter22.SetActive(false);
+                }
+            }
+
+            else if (counter2 == 0 && !counter22.activeSelf)
+            {
+                counter22.SetActive(true);
+                if (counter21.activeSelf)
+                {
+                    counter21.SetActive(false);
+                }
+            }
+
+            else if (counter2 == 2 && counter21.activeSelf)
+            {
+                counter22.SetActive(false);
+            }
         }
     }
 
@@ -128,7 +171,7 @@ public class Level : MonoBehaviour
     // Generate random number
     public int GenerateNumber ()
     {
-        return Random.Range(1, startingNo - 1);
+        return Random.Range(1, startingNo/2 - 1);
     }
 
     // What happens when you move forward
@@ -139,12 +182,28 @@ public class Level : MonoBehaviour
         player.text = playerNo.ToString();
         if (playerNo == 0)
         {
-
+            winMenu.SetActive(true);
+            playing = false;
+            Cursor.visible = true;
+            return;
         }
-        UpdateNumbersForward();
 
-        // Update current row.
-        currentRow++;
+        else if (playerNo < 0)
+        {
+            gameOverMenu.SetActive(true);
+            playing = false;
+            Cursor.visible = true;
+            return;
+        }
+
+        else
+        {
+            UpdateNumbersForward();
+
+            // Update current row.
+            currentRow++;
+        }
+
     }
 
     public void UpdateNumbersForward ()
@@ -172,6 +231,16 @@ public class Level : MonoBehaviour
         else
         {
             AssignNumber(minusBoxes[0], matrix[currentRow + 2, 0], 2, 0);
+
+            if (counter0 < 0)
+            {
+                counter0++;
+            }
+
+            else
+            {
+                counter0 = 0;
+            }
         }
 
         // Update 2nd minus box
@@ -191,6 +260,16 @@ public class Level : MonoBehaviour
         else
         {
             AssignNumber(minusBoxes[1], matrix[currentRow + 2, 1], 2, 1);
+
+            if (counter1 < 1)
+            {
+                counter1++;
+            }
+
+            else
+            {
+                counter1 = 0;
+            }
         }
 
         // Update 3rd minus box
@@ -210,6 +289,16 @@ public class Level : MonoBehaviour
         else
         {
             AssignNumber(minusBoxes[2], matrix[currentRow + 2, 2], 2, 2);
+
+            if (counter2 < 2)
+            {
+                counter2++;
+            }
+
+            else
+            {
+                counter2 = 0;
+            }
         }
     }
 
@@ -226,10 +315,22 @@ public class Level : MonoBehaviour
             // Add the number below the player to the player number.
             playerNo = playerNo + matrix[currentRow, playerPos];
             player.text = playerNo.ToString();
-            UpdateNumbersBackward();
-            currentRow--;
+
+            if (playerNo > 43)
+            {
+                gameOverMenu.SetActive(true);
+                playing = false;
+                Cursor.visible = true;
+                return;
+            }
+
+            else
+            {
+                UpdateNumbersBackward();
+                // Update current row.
+                currentRow--;
+            }
         }
-        
     }
 
     public void UpdateNumbersBackward()
@@ -239,6 +340,36 @@ public class Level : MonoBehaviour
         {
             AssignNumber(minusBoxes[i], matrix[currentRow, i], 0, i);
             AssignNumber(plusBoxes[i], matrix[currentRow - 1, i], 0, i);
+        }
+
+        if (counter0 == 0)
+        {
+            counter0 = 0;
+        }
+
+        else
+        {
+            counter0 = 0;
+        }
+
+        if (counter1 == 0)
+        {
+            counter1 = 1;
+        }
+
+        else
+        {
+            counter1--;
+        }
+
+        if (counter2 == 0)
+        {
+            counter1 = 2;
+        }
+
+        else
+        {
+            counter2--;
         }
     }
 }
