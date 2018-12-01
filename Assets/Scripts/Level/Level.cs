@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Level : MonoBehaviour
 {
     public GameObject winMenu;
     public GameObject gameOverMenu;
+    public Text gameOverText;
+    AudioManager audioManager;
     public bool playing;
     public Text player, minus0, minus1, minus2, plus0, plus1, plus2;
     private Text[] allBoxes;
@@ -23,10 +26,14 @@ public class Level : MonoBehaviour
     // Counters
     public GameObject counter01, counter11, counter12, counter21, counter22, counter23;
 
+    // Animations
+    public GameObject minusImage, plusImage, downImage, leftImage, upImage, rightImage;
+
     void Start ()
     {
+        audioManager = AudioManager.instance;
         playing = true;
-        allBoxes = new Text[] { player, minus0, minus1, minus2, plus0, plus1, plus2 };
+        //allBoxes = new Text[] { player, minus0, minus1, minus2, plus0, plus1, plus2 };
         minusBoxes = new Text[] { minus0, minus1, minus2 };
         plusBoxes = new Text[] { plus0, plus1, plus2 };
         startingNo = 43;
@@ -65,6 +72,8 @@ public class Level : MonoBehaviour
                 {
                     HorizontalMovement(playerPos + 1);
                 }
+
+                //rightAnim.Play("RightAnim");
             }
 
             if (Input.GetKeyDown("left") || Input.GetKeyDown("a"))
@@ -120,6 +129,14 @@ public class Level : MonoBehaviour
             else if (counter2 == 2 && counter21.activeSelf)
             {
                 counter22.SetActive(false);
+            }
+        }
+
+        else
+        {
+            if (Input.GetKeyDown("return") || Input.GetKeyDown("space") || Input.GetKeyDown("enter"))
+            {
+                RestartLevel();
             }
         }
     }
@@ -191,6 +208,7 @@ public class Level : MonoBehaviour
         else if (playerNo < 0)
         {
             gameOverMenu.SetActive(true);
+            gameOverText.text = "You can't go below 0!";
             playing = false;
             Cursor.visible = true;
             return;
@@ -198,6 +216,7 @@ public class Level : MonoBehaviour
 
         else
         {
+            audioManager.PlaySound("Subtraction");
             UpdateNumbersForward();
 
             // Update current row.
@@ -319,6 +338,7 @@ public class Level : MonoBehaviour
             if (playerNo > 43)
             {
                 gameOverMenu.SetActive(true);
+                gameOverText.text = "You can't go over 43!";
                 playing = false;
                 Cursor.visible = true;
                 return;
@@ -326,6 +346,7 @@ public class Level : MonoBehaviour
 
             else
             {
+                audioManager.PlaySound("Addition");
                 UpdateNumbersBackward();
                 // Update current row.
                 currentRow--;
@@ -371,6 +392,12 @@ public class Level : MonoBehaviour
         {
             counter2--;
         }
+    }
+
+    public void RestartLevel()
+    {
+        Scene currentLevel = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentLevel.buildIndex);
     }
 }
 

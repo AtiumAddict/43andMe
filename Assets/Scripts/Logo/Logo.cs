@@ -13,6 +13,6 @@ public class Logo : MonoBehaviour
 	
 	void NextScene()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("02Level");
     }
 }
