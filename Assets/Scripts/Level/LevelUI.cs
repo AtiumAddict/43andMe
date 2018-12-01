@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelUI : MonoBehaviour
 {
+    public GameObject pauseMenu;
 
-	void Start ()
+    void Start ()
     {
         Cursor.visible = false;
     }
