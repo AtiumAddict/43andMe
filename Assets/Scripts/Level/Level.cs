@@ -8,6 +8,7 @@ public class Level : MonoBehaviour
 {
     public GameObject winMenu;
     public GameObject gameOverMenu;
+    public GameObject pauseMenu;
     public GameObject fadePanel;
     public Text gameOverText;
     AudioManager audioManager;
@@ -28,17 +29,19 @@ public class Level : MonoBehaviour
     // Timer
     public float timer = 30f;
     public Text timerText;
+    public GameObject timerObject;
+    private Animator timerAnim;
 
     // Counters
     public GameObject counter01, counter11, counter12, counter21, counter22, counter23;
 
     // Animations
-    public GameObject minusImage, plusImage, downImage, leftImage, upImage, rightImage;
+    //public GameObject minusImage, plusImage, downImage, leftImage, upImage, rightImage;
 
     void Start ()
     {
         audioManager = AudioManager.instance;
-
+        pauseMenu.SetActive(false);
         playing = true;
         //allBoxes = new Text[] { player, minus0, minus1, minus2, plus0, plus1, plus2 };
         minusBoxes = new Text[] { minus0, minus1, minus2 };
@@ -53,6 +56,7 @@ public class Level : MonoBehaviour
         playerImage.rectTransform.anchoredPosition = pos1.anchoredPosition;
         playerPos = 1;
         timer = 30f;
+        timerAnim = timerObject.GetComponent<Animator>();
 
         // Generate the minus numbers
         for (int i = 0; i < 3; i++)
@@ -69,6 +73,8 @@ public class Level : MonoBehaviour
 
     void Update()
     {
+        timerAnim.SetBool("isPlaying", playing);
+
         if (playing)
         {
             timer -= Time.deltaTime;
@@ -155,6 +161,11 @@ public class Level : MonoBehaviour
             {
                 RestartLevel();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePauseMenu();
         }
     }
 
@@ -418,6 +429,20 @@ public class Level : MonoBehaviour
         gameOverMenu.SetActive(true);
         playing = false;
         Cursor.visible = true;
+    }
+
+    public void TogglePauseMenu()
+    {
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        if (pauseMenu.activeSelf)
+        {
+            playing = false;
+        }
+
+        else
+        {
+            playing = true;
+        }
     }
 }
 
