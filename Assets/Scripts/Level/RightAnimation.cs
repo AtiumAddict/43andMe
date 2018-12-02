@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RightAnimation : MonoBehaviour {
+public class RightAnimation : Level
+{
 
     private Animation anim;
 
@@ -14,7 +15,7 @@ public class RightAnimation : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
+		if (playing && (Input.GetKeyDown("right") || Input.GetKeyDown("d")))
         {
             anim.Play("RightAnim");
         }

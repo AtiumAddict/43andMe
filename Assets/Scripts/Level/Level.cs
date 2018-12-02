@@ -18,12 +18,16 @@ public class Level : MonoBehaviour
     private Text[] minusBoxes;
     private Text[] plusBoxes;
     public RectTransform pos0, pos1, pos2;
-    private int playerNo;
+    protected int playerNo;
     public int startingNo;
     public int playerPos;
     private int counter0, counter1, counter2;
     public int[,] matrix = new int [1000,3];
     private int currentRow;
+
+    // Timer
+    public float timer = 30f;
+    public Text timerText;
 
     // Counters
     public GameObject counter01, counter11, counter12, counter21, counter22, counter23;
@@ -48,6 +52,8 @@ public class Level : MonoBehaviour
         playerText.text = playerNo.ToString();
         playerImage.rectTransform.anchoredPosition = pos1.anchoredPosition;
         playerPos = 1;
+        timer = 30f;
+
         // Generate the minus numbers
         for (int i = 0; i < 3; i++)
         {
@@ -65,6 +71,13 @@ public class Level : MonoBehaviour
     {
         if (playing)
         {
+            timer -= Time.deltaTime;
+            timerText.text = (Mathf.RoundToInt(timer)).ToString();
+            if (timer <= 0f)
+            {
+                GameOver("You're stuck with " + playerNo);
+            }
+
             if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
             {
                 if (playerPos == 2)
@@ -211,10 +224,7 @@ public class Level : MonoBehaviour
 
         else if (playerNo < 0)
         {
-            audioManager.PlaySound("Below");
-            gameOverText.text = "You can't go below 0!";
-            gameOverMenu.SetActive(true);
-            playing = false;
+            GameOver("You can't go below 0!");
             return;
         }
 
@@ -341,11 +351,7 @@ public class Level : MonoBehaviour
 
             if (playerNo > 43)
             {
-                audioManager.PlaySound("Over");
-                gameOverText.text = "You can't go over 43!";
-                gameOverMenu.SetActive(true);
-                playing = false;
-                Cursor.visible = true;
+                GameOver("You can't go over 43!");
                 return;
             }
 
@@ -403,6 +409,15 @@ public class Level : MonoBehaviour
     {
         Scene currentLevel = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentLevel.buildIndex);
+    }
+
+    public void GameOver (string message)
+    {
+        audioManager.PlaySound("Over");
+        gameOverText.text = message;
+        gameOverMenu.SetActive(true);
+        playing = false;
+        Cursor.visible = true;
     }
 }
 

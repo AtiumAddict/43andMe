@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelUI : MonoBehaviour
+public class LevelUI : Level
 {
     public GameObject pauseMenu;
 
@@ -23,11 +23,14 @@ public class LevelUI : MonoBehaviour
     public void TogglePauseMenu()
     {
         pauseMenu.SetActive(!pauseMenu.activeSelf);
-    }
+        if (pauseMenu.activeSelf)
+        {
+            playing = false;
+        }
 
-    public void RestartLevel()
-    {
-        Scene currentLevel = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentLevel.buildIndex);
+        else
+        {
+            playing = true;
+        }
     }
 }
