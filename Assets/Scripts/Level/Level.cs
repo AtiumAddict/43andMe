@@ -129,8 +129,9 @@ public class Level : MonoBehaviour
                 }
             }
 
-            else if (counter2 == 2 && counter21.activeSelf)
+            else if (counter2 == 2 && (counter21.activeSelf || counter22.activeSelf))
             {
+                counter21.SetActive(false);
                 counter22.SetActive(false);
             }
         }
@@ -389,7 +390,7 @@ public class Level : MonoBehaviour
 
         if (counter2 == 0)
         {
-            counter1 = 2;
+            counter2 = 2;
         }
 
         else
