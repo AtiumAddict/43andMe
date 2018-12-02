@@ -192,7 +192,7 @@ public class Level : MonoBehaviour
     // Generate random number
     public int GenerateNumber ()
     {
-        return Random.Range(1, startingNo/2 - 1);
+        return Random.Range(1, startingNo - 1);
     }
 
     // What happens when you move forward
