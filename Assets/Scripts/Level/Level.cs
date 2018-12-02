@@ -8,10 +8,12 @@ public class Level : MonoBehaviour
 {
     public GameObject winMenu;
     public GameObject gameOverMenu;
+    public GameObject fadePanel;
     public Text gameOverText;
     AudioManager audioManager;
     public bool playing;
-    public Text player, minus0, minus1, minus2, plus0, plus1, plus2;
+    public Image playerImage;
+    public Text playerText, minus0, minus1, minus2, plus0, plus1, plus2;
     private Text[] allBoxes;
     private Text[] minusBoxes;
     private Text[] plusBoxes;
@@ -32,6 +34,7 @@ public class Level : MonoBehaviour
     void Start ()
     {
         audioManager = AudioManager.instance;
+
         playing = true;
         //allBoxes = new Text[] { player, minus0, minus1, minus2, plus0, plus1, plus2 };
         minusBoxes = new Text[] { minus0, minus1, minus2 };
@@ -42,8 +45,8 @@ public class Level : MonoBehaviour
         counter1 = 0;
         counter2 = 0;
         playerNo = startingNo;
-        player.text = playerNo.ToString();
-        player.rectTransform.anchoredPosition = pos1.anchoredPosition;
+        playerText.text = playerNo.ToString();
+        playerImage.rectTransform.anchoredPosition = pos1.anchoredPosition;
         playerPos = 1;
         // Generate the minus numbers
         for (int i = 0; i < 3; i++)
@@ -167,19 +170,19 @@ public class Level : MonoBehaviour
         switch (i)
         {
             case 0:
-                player.rectTransform.anchoredPosition = pos0.anchoredPosition;
+                playerImage.rectTransform.anchoredPosition = pos0.anchoredPosition;
                 playerPos = 0;
                 break;
             case 1:
-                player.rectTransform.anchoredPosition = pos1.anchoredPosition;
+                playerImage.rectTransform.anchoredPosition = pos1.anchoredPosition;
                 playerPos = 1;
                 break;
             case 2:
-                player.rectTransform.anchoredPosition = pos2.anchoredPosition;
+                playerImage.rectTransform.anchoredPosition = pos2.anchoredPosition;
                 playerPos = 2;
                 break;
             default:
-                player.rectTransform.anchoredPosition = pos1.anchoredPosition;
+                playerImage.rectTransform.anchoredPosition = pos1.anchoredPosition;
                 playerPos = 1;
                 break;
         }
@@ -196,21 +199,21 @@ public class Level : MonoBehaviour
     {
         // Subtract the number above the player from the player number.
         playerNo = playerNo - matrix[currentRow + 1, playerPos];
-        player.text = playerNo.ToString();
+        playerText.text = playerNo.ToString();
         if (playerNo == 0)
         {
+            audioManager.PlaySound("Win");
             winMenu.SetActive(true);
             playing = false;
-            Cursor.visible = true;
             return;
         }
 
         else if (playerNo < 0)
         {
-            gameOverMenu.SetActive(true);
+            audioManager.PlaySound("Below");
             gameOverText.text = "You can't go below 0!";
+            gameOverMenu.SetActive(true);
             playing = false;
-            Cursor.visible = true;
             return;
         }
 
@@ -333,12 +336,13 @@ public class Level : MonoBehaviour
         {
             // Add the number below the player to the player number.
             playerNo = playerNo + matrix[currentRow, playerPos];
-            player.text = playerNo.ToString();
+            playerText.text = playerNo.ToString();
 
             if (playerNo > 43)
             {
-                gameOverMenu.SetActive(true);
+                audioManager.PlaySound("Over");
                 gameOverText.text = "You can't go over 43!";
+                gameOverMenu.SetActive(true);
                 playing = false;
                 Cursor.visible = true;
                 return;

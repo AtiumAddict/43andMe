@@ -9,7 +9,6 @@ public class LevelUI : MonoBehaviour
 
     void Start ()
     {
-        Cursor.visible = false;
         pauseMenu.SetActive(false);
     }
 
@@ -24,12 +23,6 @@ public class LevelUI : MonoBehaviour
     public void TogglePauseMenu()
     {
         pauseMenu.SetActive(!pauseMenu.activeSelf);
-        Cursor.visible = !pauseMenu.activeSelf;
-    }
-
-    public void GoToMenu()
-    {
-        SceneManager.LoadScene("01MainMenu");
     }
 
     public void RestartLevel()
