@@ -27,7 +27,7 @@ public class Level : MonoBehaviour
     private int currentRow;
 
     // Timer
-    public float timer = 30f;
+    public float timer = 43f;
     public Text timerText;
     public GameObject timerObject;
     private Animator timerAnim;
@@ -55,7 +55,7 @@ public class Level : MonoBehaviour
         playerText.text = playerNo.ToString();
         playerImage.rectTransform.anchoredPosition = pos1.anchoredPosition;
         playerPos = 1;
-        timer = 30f;
+        timer = 43f;
         timerAnim = timerObject.GetComponent<Animator>();
 
         // Generate the minus numbers
