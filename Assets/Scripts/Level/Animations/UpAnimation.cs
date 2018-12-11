@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RightAnimation : Level
+public class UpAnimation : MonoBehaviour
 {
-
     private Animation anim;
 
     void Start ()
@@ -12,12 +11,11 @@ public class RightAnimation : Level
         anim = gameObject.GetComponent<Animation>();
 	}
 	
-	// Update is called once per frame
 	void Update ()
     {
-		if (playing && (Input.GetKeyDown("right") || Input.GetKeyDown("d")))
+		if (Input.GetKeyDown("up") || Input.GetKeyDown("w"))
         {
-            anim.Play("RightAnim");
+            anim.Play("UpAnim");
         }
 	}
 }

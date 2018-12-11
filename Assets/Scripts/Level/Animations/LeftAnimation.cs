@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeftAnimation : Level
+public class LeftAnimation : MonoBehaviour
 {
 
     private Animation anim;
@@ -15,7 +15,7 @@ public class LeftAnimation : Level
 	// Update is called once per frame
 	void Update ()
     {
-		if (playing && (Input.GetKeyDown("left") || Input.GetKeyDown("a")))
+		if (Input.GetKeyDown("left") || Input.GetKeyDown("a"))
         {
             anim.Play("LeftAnim");
         }

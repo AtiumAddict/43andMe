@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlusAnimation : Level
+public class RightAnimation : MonoBehaviour
 {
 
     private Animation anim;
@@ -12,12 +12,11 @@ public class PlusAnimation : Level
         anim = gameObject.GetComponent<Animation>();
 	}
 	
-	// Update is called once per frame
 	void Update ()
     {
-		if (playing && (Input.GetKeyDown("down") || Input.GetKeyDown("s")))
+		if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
         {
-            anim.Play("PlusAnim");
+            anim.Play("RightAnim");
         }
 	}
 }

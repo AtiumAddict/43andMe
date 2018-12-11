@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DownAnimation : MonoBehaviour {
+public class DownAnimation : MonoBehaviour
+{
 
     private Animation anim;
+
 
     void Start ()
     {

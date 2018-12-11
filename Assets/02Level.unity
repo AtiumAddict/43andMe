@@ -1218,34 +1218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933b643c36c396c4cbcc0adc93f255c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winMenu: {fileID: 0}
-  gameOverMenu: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  fadePanel: {fileID: 0}
-  gameOverText: {fileID: 0}
-  playing: 0
-  playerImage: {fileID: 0}
-  playerText: {fileID: 0}
-  minus0: {fileID: 0}
-  minus1: {fileID: 0}
-  minus2: {fileID: 0}
-  plus0: {fileID: 0}
-  plus1: {fileID: 0}
-  plus2: {fileID: 0}
-  pos0: {fileID: 0}
-  pos1: {fileID: 0}
-  pos2: {fileID: 0}
-  startingNo: 0
-  playerPos: 0
-  timer: 30
-  timerText: {fileID: 0}
-  timerObject: {fileID: 0}
-  counter01: {fileID: 0}
-  counter11: {fileID: 0}
-  counter12: {fileID: 0}
-  counter21: {fileID: 0}
-  counter22: {fileID: 0}
-  counter23: {fileID: 0}
 --- !u!1 &440692557
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,15 +2362,15 @@ MonoBehaviour:
   pos2: {fileID: 501986150}
   startingNo: 0
   playerPos: 0
-  timer: 30
-  timerText: {fileID: 671725430}
-  timerObject: {fileID: 671725427}
   counter01: {fileID: 1476540604}
   counter11: {fileID: 1318523971}
   counter12: {fileID: 440692557}
   counter21: {fileID: 404010925}
   counter22: {fileID: 234061323}
   counter23: {fileID: 87701433}
+  timer: 30
+  timerText: {fileID: 671725430}
+  timerObject: {fileID: 671725427}
 --- !u!1 &1030909715
 GameObject:
   m_ObjectHideFlags: 0
@@ -2811,34 +2783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2644d6df90d72f94f9229e86a24798a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winMenu: {fileID: 0}
-  gameOverMenu: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  fadePanel: {fileID: 0}
-  gameOverText: {fileID: 0}
-  playing: 0
-  playerImage: {fileID: 0}
-  playerText: {fileID: 0}
-  minus0: {fileID: 0}
-  minus1: {fileID: 0}
-  minus2: {fileID: 0}
-  plus0: {fileID: 0}
-  plus1: {fileID: 0}
-  plus2: {fileID: 0}
-  pos0: {fileID: 0}
-  pos1: {fileID: 0}
-  pos2: {fileID: 0}
-  startingNo: 0
-  playerPos: 0
-  timer: 30
-  timerText: {fileID: 0}
-  timerObject: {fileID: 0}
-  counter01: {fileID: 0}
-  counter11: {fileID: 0}
-  counter12: {fileID: 0}
-  counter21: {fileID: 0}
-  counter22: {fileID: 0}
-  counter23: {fileID: 0}
 --- !u!1 &1318523971
 GameObject:
   m_ObjectHideFlags: 0
@@ -3631,34 +3575,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 064e9f8d8caf1784a89d2beadd3f8965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winMenu: {fileID: 0}
-  gameOverMenu: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  fadePanel: {fileID: 0}
-  gameOverText: {fileID: 0}
-  playing: 0
-  playerImage: {fileID: 0}
-  playerText: {fileID: 0}
-  minus0: {fileID: 0}
-  minus1: {fileID: 0}
-  minus2: {fileID: 0}
-  plus0: {fileID: 0}
-  plus1: {fileID: 0}
-  plus2: {fileID: 0}
-  pos0: {fileID: 0}
-  pos1: {fileID: 0}
-  pos2: {fileID: 0}
-  startingNo: 0
-  playerPos: 0
-  timer: 30
-  timerText: {fileID: 0}
-  timerObject: {fileID: 0}
-  counter01: {fileID: 0}
-  counter11: {fileID: 0}
-  counter12: {fileID: 0}
-  counter21: {fileID: 0}
-  counter22: {fileID: 0}
-  counter23: {fileID: 0}
 --- !u!1 &1739637766
 GameObject:
   m_ObjectHideFlags: 0
@@ -3970,34 +3886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b51559660594645bfb19c1b1726ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winMenu: {fileID: 0}
-  gameOverMenu: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  fadePanel: {fileID: 0}
-  gameOverText: {fileID: 0}
-  playing: 0
-  playerImage: {fileID: 0}
-  playerText: {fileID: 0}
-  minus0: {fileID: 0}
-  minus1: {fileID: 0}
-  minus2: {fileID: 0}
-  plus0: {fileID: 0}
-  plus1: {fileID: 0}
-  plus2: {fileID: 0}
-  pos0: {fileID: 0}
-  pos1: {fileID: 0}
-  pos2: {fileID: 0}
-  startingNo: 0
-  playerPos: 0
-  timer: 30
-  timerText: {fileID: 0}
-  timerObject: {fileID: 0}
-  counter01: {fileID: 0}
-  counter11: {fileID: 0}
-  counter12: {fileID: 0}
-  counter21: {fileID: 0}
-  counter22: {fileID: 0}
-  counter23: {fileID: 0}
 --- !u!111 &1863725202
 Animation:
   m_ObjectHideFlags: 0
@@ -4008,7 +3896,6 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: fe5cf36bc5205644daaa8d69bda21570, type: 2}
   - {fileID: 7400000, guid: cc97ad6f3fe5bf047b8d7938af8633fa, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
@@ -4186,34 +4073,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 872d586bb74ca004ba09752b9b6b567f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winMenu: {fileID: 0}
-  gameOverMenu: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  fadePanel: {fileID: 0}
-  gameOverText: {fileID: 0}
-  playing: 0
-  playerImage: {fileID: 0}
-  playerText: {fileID: 0}
-  minus0: {fileID: 0}
-  minus1: {fileID: 0}
-  minus2: {fileID: 0}
-  plus0: {fileID: 0}
-  plus1: {fileID: 0}
-  plus2: {fileID: 0}
-  pos0: {fileID: 0}
-  pos1: {fileID: 0}
-  pos2: {fileID: 0}
-  startingNo: 0
-  playerPos: 0
-  timer: 30
-  timerText: {fileID: 0}
-  timerObject: {fileID: 0}
-  counter01: {fileID: 0}
-  counter11: {fileID: 0}
-  counter12: {fileID: 0}
-  counter21: {fileID: 0}
-  counter22: {fileID: 0}
-  counter23: {fileID: 0}
 --- !u!1 &2066984793
 GameObject:
   m_ObjectHideFlags: 0

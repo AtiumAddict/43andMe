@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinusAnimation : Level
+public class MinusAnimation : MonoBehaviour
 {
-
     private Animation anim;
 
     void Start ()
@@ -12,10 +11,9 @@ public class MinusAnimation : Level
         anim = gameObject.GetComponent<Animation>();
 	}
 	
-	// Update is called once per frame
 	void Update ()
     {
-		if (playing && (Input.GetKeyDown("up") || Input.GetKeyDown("w")))
+		if (Input.GetKeyDown("up") || Input.GetKeyDown("w"))
         {
             anim.Play("MinusAnim");
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpAnimation : Level
+public class PlusAnimation : MonoBehaviour
 {
 
     private Animation anim;
@@ -11,13 +11,12 @@ public class UpAnimation : Level
     {
         anim = gameObject.GetComponent<Animation>();
 	}
-	
-	// Update is called once per frame
+
 	void Update ()
     {
-		if (playing && (Input.GetKeyDown("up") || Input.GetKeyDown("w")))
+		if (Input.GetKeyDown("down") || Input.GetKeyDown("s"))
         {
-            anim.Play("UpAnim");
+            anim.Play("PlusAnim");
         }
 	}
 }

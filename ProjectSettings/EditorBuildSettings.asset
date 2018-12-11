@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/00Logo.unity
     guid: ce9d926d40222974c85deca339ecbc56
   - enabled: 1
-    path: Assets/00TitleScene.unity
+    path: Assets/00Title.unity
     guid: d7210361ba1321042a0eab8af2c09e79
   - enabled: 1
     path: Assets/01Instructions.unity
