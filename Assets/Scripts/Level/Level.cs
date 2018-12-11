@@ -6,37 +6,42 @@ using UnityEngine.SceneManagement;
 
 public class Level : MonoBehaviour
 {
+    // UI panels
     public GameObject winMenu;
     public GameObject gameOverMenu;
     public GameObject pauseMenu;
     public GameObject fadePanel;
     public Text gameOverText;
+
     AudioManager audioManager;
     public bool playing;
     public Image playerImage;
+
+    public int[,] matrix = new int[1000, 3];    // The matrix that will hold all the nubmers
+    // Subtraction and addition boxes
     public Text playerText, minus0, minus1, minus2, plus0, plus1, plus2;
     private Text[] allBoxes;
     private Text[] minusBoxes;
     private Text[] plusBoxes;
-    public RectTransform pos0, pos1, pos2;
+
+    public RectTransform pos0, pos1, pos2;  // The 3 possible player number positions
     protected int playerNo;
     public int startingNo;
-    public int playerPos;
+    public int playerPos;   // A number that indicates the player number position
+    private int currentRow; // A number that indicates on what row the player number is at the moment.
+
+    /* The counters that show how many copies of the same number are behind the current oneon the 3 rows. 
+     * For example, when the the counter2 is at 0 and the minus number on the third column is 27, there are
+     * 2 more 27s behind it. When the counter2 is at 1, there is 1 more 27 and when it is at 2, the next 
+     * number will be randomly generated. */
     private int counter0, counter1, counter2;
-    public int[,] matrix = new int [1000,3];
-    private int currentRow;
+    public GameObject counter01, counter11, counter12, counter21, counter22, counter23;
 
     // Timer
     public float timer = 43f;
     public Text timerText;
     public GameObject timerObject;
     private Animator timerAnim;
-
-    // Counters
-    public GameObject counter01, counter11, counter12, counter21, counter22, counter23;
-
-    // Animations
-    //public GameObject minusImage, plusImage, downImage, leftImage, upImage, rightImage;
 
     void Start ()
     {
@@ -79,11 +84,14 @@ public class Level : MonoBehaviour
         {
             timer -= Time.deltaTime;
             timerText.text = (Mathf.RoundToInt(timer)).ToString();
+
+            // If the timer reaches 0, the game is over.
             if (timer <= 0f)
             {
                 GameOver("You're stuck with " + playerNo);
             }
 
+            // Movement to the right
             if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
             {
                 if (playerPos == 2)
@@ -94,10 +102,9 @@ public class Level : MonoBehaviour
                 {
                     HorizontalMovement(playerPos + 1);
                 }
-
-                //rightAnim.Play("RightAnim");
             }
-
+            
+            // Movement to the left
             if (Input.GetKeyDown("left") || Input.GetKeyDown("a"))
             {
                 if (playerPos == 0)
@@ -110,15 +117,19 @@ public class Level : MonoBehaviour
                 }
             }
 
+            // Forward movement (subtraction)
             if (Input.GetKeyDown("up") || Input.GetKeyDown("w"))
             {
                 ForwardMovement();
             }
 
+            // Forward movement (addition)
             if (Input.GetKeyDown("down") || Input.GetKeyDown("s"))
             {
                 BackwardMovement();
             }
+
+            // Handle the counter line indicators:
 
             if (counter1 == 0 && !counter11.activeSelf)
             {
@@ -159,17 +170,20 @@ public class Level : MonoBehaviour
         {
             if (Input.GetKeyDown("return") || Input.GetKeyDown("space") || Input.GetKeyDown("enter"))
             {
-                RestartLevel();
+                if (gameOverMenu.activeSelf || winMenu.activeSelf)
+                {
+                    RestartLevel();
+                }
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown("escape"))
         {
             TogglePauseMenu();
         }
     }
 
-    // Assign the given number to the given text box.
+    // Assign the given number to the given text box, and, if the number isn't in the matrix, put it in the appropriate column and row.
     public void AssignNumber(Text txt, int num, int relativeRow, int col)
     {
         // Put the number in the text box.
@@ -233,6 +247,7 @@ public class Level : MonoBehaviour
             return;
         }
 
+        // If the player number goes below 0, the game is over.
         else if (playerNo < 0)
         {
             GameOver("You can't go below 0!");
@@ -360,6 +375,7 @@ public class Level : MonoBehaviour
             playerNo = playerNo + matrix[currentRow, playerPos];
             playerText.text = playerNo.ToString();
 
+            // If the player number goes over 43, the game is over.
             if (playerNo > 43)
             {
                 GameOver("You can't go over 43!");
@@ -422,6 +438,7 @@ public class Level : MonoBehaviour
         SceneManager.LoadScene(currentLevel.buildIndex);
     }
 
+    // The game over screen is activated with the given message
     public void GameOver (string message)
     {
         audioManager.PlaySound("Over");
